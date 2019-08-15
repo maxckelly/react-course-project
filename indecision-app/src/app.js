@@ -1,23 +1,34 @@
-console.log("App.js is running");
-
 // JSX - JavaScript XML
+var welcome = {
+    title: 'Welcome to my app',
+    subtitle: 'Its the indecision app, helping you make your decision',
+}
+
+var todos = {
+    todoOne: 'Walk the dogs'
+}
+
 var template = (
   <div>
-    <h2> My React Site </h2> 
-    <p> This is some info</p>
+    <h2>{welcome.title}</h2> 
+    <p>{welcome.subtitle}</p>
     <ol>
-        <li> Item One </li>
-        <li> Item Two </li>
+        <li>{todos.todoOne}</li>
     </ol>
   </div>
 );
 
+var user = {
+    name: 'Max',
+    age: 21, 
+    location: 'Melbourne, Victoria, Australia'
+};
+
 var templateTwo = (
     <div>
-        <h1> Max Kelly </h1>
-        <p> Age: 21 </p>
-        <p> Location: Melbourne, Victoria, Australia </p>
-
+        <h1>{user.name + '!'}</h1>  {/* This pulls the data from userName and puts it in the h1. */}
+        <p>{`Age: ` + user.age  }</p>
+        <p> {`Location: ` + user.location}</p>
     </div>
 );
 

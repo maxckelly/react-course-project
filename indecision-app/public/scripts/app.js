@@ -1,54 +1,64 @@
-"use strict";
-
-console.log("App.js is running");
+'use strict';
 
 // JSX - JavaScript XML
+var welcome = {
+    title: 'Welcome to my app',
+    subtitle: 'Its the indecision app, helping you make your decision'
+};
+
+var todos = {
+    todoOne: 'Walk the dogs'
+};
+
 var template = React.createElement(
-    "div",
+    'div',
     null,
     React.createElement(
-        "h2",
+        'h2',
         null,
-        " My React Site "
+        welcome.title
     ),
     React.createElement(
-        "p",
+        'p',
         null,
-        " This is some info"
+        welcome.subtitle
     ),
     React.createElement(
-        "ol",
+        'ol',
         null,
         React.createElement(
-            "li",
+            'li',
             null,
-            " Item One "
-        ),
-        React.createElement(
-            "li",
-            null,
-            " Item Two "
+            todos.todoOne
         )
     )
 );
 
+var user = {
+    name: 'Max',
+    age: 21,
+    location: 'Melbourne, Victoria, Australia'
+};
+
 var templateTwo = React.createElement(
-    "div",
+    'div',
     null,
     React.createElement(
-        "h1",
+        'h1',
         null,
-        " Max Kelly "
+        user.name + '!'
+    ),
+    '  ',
+    React.createElement(
+        'p',
+        null,
+        'Age: ' + user.age
     ),
     React.createElement(
-        "p",
+        'p',
         null,
-        " Age: 21 "
-    ),
-    React.createElement(
-        "p",
-        null,
-        " Location: Melbourne, Victoria, Australia "
+        ' ',
+        'Location: ' + user.location
     )
 );
 
