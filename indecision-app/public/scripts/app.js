@@ -1,9 +1,13 @@
 'use strict';
 
 // JSX - JavaScript XML
+
+// ---Template one---
+
 var welcome = {
     title: 'Welcome to my app',
-    subtitle: 'Its the indecision app, helping you make your decision'
+    subtitle: 'Its the indecision app, helping you make your decision',
+    options: ['One ', 'Two ']
 };
 
 var todos = {
@@ -18,27 +22,36 @@ var template = React.createElement(
         null,
         welcome.title
     ),
-    React.createElement(
+    welcome.subtitle && React.createElement(
         'p',
         null,
         welcome.subtitle
     ),
     React.createElement(
-        'ol',
+        'p',
         null,
-        React.createElement(
-            'li',
-            null,
-            todos.todoOne
-        )
+        welcome.options.length > 0 ? 'Here are your options: ' + welcome.options : 'No options'
     )
 );
 
+// -- Template two ---
 var user = {
-    name: 'Max',
-    age: 21,
-    location: 'Melbourne, Victoria, Australia'
+    name: '',
+    age: 17,
+    location: 'Melbourne'
 };
+
+// Says if there is no location then the <p></p> doesn't show up
+function getLocation(location) {
+    if (location) {
+        return React.createElement(
+            'p',
+            null,
+            'Location: ',
+            location
+        );
+    }
+}
 
 var templateTwo = React.createElement(
     'div',
@@ -46,20 +59,15 @@ var templateTwo = React.createElement(
     React.createElement(
         'h1',
         null,
-        user.name + '!'
+        user.name ? user.name : "Anonymous"
     ),
-    '  ',
-    React.createElement(
+    " ",
+    user.age && user.age >= 18 && React.createElement(
         'p',
         null,
         'Age: ' + user.age
     ),
-    React.createElement(
-        'p',
-        null,
-        ' ',
-        'Location: ' + user.location
-    )
+    getLocation(user.location)
 );
 
 var appRoot = document.getElementById("app");
