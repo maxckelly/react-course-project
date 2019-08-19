@@ -1,77 +1,46 @@
 'use strict';
 
-// JSX - JavaScript XML
-
-// ---Template one---
-
-var welcome = {
-    title: 'Welcome to my app',
-    subtitle: 'Its the indecision app, helping you make your decision',
-    options: ['One ', 'Two ']
+var square = function square(x) {
+    return x * x;
 };
 
-var todos = {
-    todoOne: 'Walk the dogs'
-};
-
-var template = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h2',
-        null,
-        welcome.title
-    ),
-    welcome.subtitle && React.createElement(
-        'p',
-        null,
-        welcome.subtitle
-    ),
-    React.createElement(
-        'p',
-        null,
-        welcome.options.length > 0 ? 'Here are your options: ' + welcome.options : 'No options'
-    )
-);
-
-// -- Template two ---
-var user = {
-    name: '',
-    age: 17,
-    location: 'Melbourne'
-};
-
-// Says if there is no location then the <p></p> doesn't show up
-function getLocation(location) {
-    if (location) {
-        return React.createElement(
-            'p',
-            null,
-            'Location: ',
-            location
-        );
-    }
+// You can remove the const from the name and put it like the below.
+function noConst(x) {
+    return x * x;
 }
 
-var templateTwo = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        user.name ? user.name : "Anonymous"
-    ),
-    " ",
-    user.age && user.age >= 18 && React.createElement(
-        'p',
-        null,
-        'Age: ' + user.age
-    ),
-    getLocation(user.location)
-);
+console.log(square(8));
 
-var appRoot = document.getElementById("app");
-var profileRoot = document.getElementById("profile");
+//--- Arrow function--
 
-ReactDOM.render(template, appRoot);
-ReactDOM.render(templateTwo, profileRoot);
+// Arrow function removes the function key word
+// Arrow functions are always anonymous. So you have to assign a const
+var squareArrow = function squareArrow(x) {
+    return x * x;
+};
+
+// The below if you want to make the arrow function more compact.
+var newSquareArrow = function newSquareArrow(x) {
+    return x * x;
+};
+
+console.log(squareArrow(500));
+console.log(newSquareArrow(16));
+
+//--- Challenge ---
+
+function getFirstName(name) {
+    return name.split(' ')[0];
+}
+
+var getFirstNameArrow = function getFirstNameArrow(name) {
+    return name.split(' ')[0];
+};
+
+var getFirstNameArrowCompact = function getFirstNameArrowCompact(name) {
+    return name.split(' ')[0];
+};
+
+console.log(getFirstName('Max Kelly'));
+console.log(getFirstNameArrow('John Smith'));
+console.log(getFirstNameArrowCompact('Tess Buckley'));
