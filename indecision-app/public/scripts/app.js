@@ -37,52 +37,51 @@ var template = React.createElement(
 
 var count = 0;
 var addOne = function addOne() {
-    console.log('CLICKED!');
+    count++; // This increases the count plus 1. The ++ is a short hand for saying count = count +1
+    renderCounterApp();
 };
 var minusOne = function minusOne() {
-    console.log('MinusOne');
+    count--; // This decreases the count minus 1. The -- is a short hand for saying count = count -1
+    renderCounterApp();
 };
 var reset = function reset() {
-    console.log('Reset');
+    count = 0;
+    renderCounterApp();
 };
 
-var templateTwo = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        'Count: ',
-        count
-    ),
-    React.createElement(
-        'button',
-        { onClick: addOne },
-        '+1'
-    ),
-    React.createElement(
-        'button',
-        { onClick: minusOne },
-        '-1'
-    ),
-    React.createElement(
-        'button',
-        { onClick: reset },
-        'Reset'
-    )
-);
-
-// Challenge
-
-// Make a button with the text "-1"
-// Setup minusOne function and register onclick 
-// log minusOne everytime it gets clicked
-// Mae reset button "rest" - setup reset function to log reset everytime it gets clicked.
-
-console.log(templateTwo);
 var appRoot = document.getElementById("app");
-ReactDOM.render(templateTwo, appRoot);
 
+var renderCounterApp = function renderCounterApp() {
+    var templateTwo = React.createElement(
+        'div',
+        null,
+        React.createElement(
+            'h1',
+            null,
+            'Count: ',
+            count
+        ),
+        React.createElement(
+            'button',
+            { onClick: addOne },
+            '+1'
+        ),
+        React.createElement(
+            'button',
+            { onClick: minusOne },
+            '-1'
+        ),
+        React.createElement(
+            'button',
+            { onClick: reset },
+            'Reset'
+        )
+    );
+
+    ReactDOM.render(templateTwo, appRoot);
+};
+
+renderCounterApp();
 //-- Template two ---
 // const user = {
 //     name: '',
