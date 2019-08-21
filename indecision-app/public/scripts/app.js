@@ -3,85 +3,93 @@
 // JSX - JavaScript XML
 // For JSX class needs to be called className
 
-// ---Template one---
-
 var welcome = {
     title: 'Welcome to my app',
     subtitle: 'Its the indecision app, helping you make your decision',
-    options: ['One ', 'Two ']
+    options: []
 };
 
-var todos = {
-    todoOne: 'Walk the dogs'
+var onFormSubmit = function onFormSubmit(e) {
+    e.preventDefault(); // This removes the default action which was to refresh the page and put the data up into the URL
+
+    var option = e.target.elements.option.value; // This basically creates a variable, then the event targets the element option what we created down in the name="option", it then returns the value
+
+    if (option) {
+        welcome.options.push(option); // This then pushes the input onto the array so it access const welcome, then goes down to options and then pushes the above option const into the option array
+        e.target.elements.option.value = '';
+    }
+    renderApp(); // Once the function has completed it rerenders the app
 };
 
-var template = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h2',
-        null,
-        welcome.title
-    ),
-    welcome.subtitle && React.createElement(
-        'p',
-        null,
-        welcome.subtitle
-    ),
-    React.createElement(
-        'p',
-        null,
-        welcome.options.length > 0 ? 'Here are your options: ' + welcome.options : 'No options'
-    )
-);
-
-var count = 0;
-var addOne = function addOne() {
-    count++; // This increases the count plus 1. The ++ is a short hand for saying count = count +1
-    renderCounterApp();
-};
-var minusOne = function minusOne() {
-    count--; // This decreases the count minus 1. The -- is a short hand for saying count = count -1
-    renderCounterApp();
-};
-var reset = function reset() {
-    count = 0;
-    renderCounterApp();
+// This removes all buttons and rerenders the app
+var removeAllButton = function removeAllButton() {
+    welcome.options = [];
+    renderApp();
 };
 
 var appRoot = document.getElementById("app");
 
-var renderCounterApp = function renderCounterApp() {
-    var templateTwo = React.createElement(
+var renderApp = function renderApp() {
+
+    var template = React.createElement(
         'div',
         null,
         React.createElement(
-            'h1',
+            'h2',
             null,
-            'Count: ',
-            count
+            welcome.title
+        ),
+        welcome.subtitle && React.createElement(
+            'p',
+            null,
+            welcome.subtitle
         ),
         React.createElement(
-            'button',
-            { onClick: addOne },
-            '+1'
+            'p',
+            null,
+            welcome.options.length > 0 ? 'Here are your options: ' + welcome.options : 'No options'
         ),
         React.createElement(
-            'button',
-            { onClick: minusOne },
-            '-1'
+            'p',
+            null,
+            welcome.options.length
         ),
         React.createElement(
-            'button',
-            { onClick: reset },
-            'Reset'
+            'ol',
+            null,
+            React.createElement(
+                'li',
+                null,
+                'Item One'
+            ),
+            React.createElement(
+                'li',
+                null,
+                'Item Two'
+            ),
+            React.createElement(
+                'button',
+                { onClick: removeAllButton },
+                'Remove All'
+            )
+        ),
+        React.createElement(
+            'form',
+            { onSubmit: onFormSubmit },
+            React.createElement('input', { type: 'text', name: 'option' }),
+            React.createElement(
+                'button',
+                null,
+                'Add Option'
+            )
         )
     );
 
-    ReactDOM.render(templateTwo, appRoot);
+    ReactDOM.render(template, appRoot);
 };
 
-renderCounterApp();
+renderApp();
+
 //-- Template two ---
 // const user = {
 //     name: '',
